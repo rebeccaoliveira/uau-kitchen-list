@@ -23,6 +23,7 @@ export default class App extends Component {
     this.handleAddProduct = this.handleAddProduct.bind(this)
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this)
     this.updateInput = this.updateInput.bind(this)
+    this.updateDone = this.updateDone.bind(this)
   };
 
 
@@ -39,7 +40,7 @@ handleAddProduct() {
 }
 
 handleRemoveProduct(name) {
-  console.log('removendoooo o', name);
+  console.log('remove', name);
   this.setState((currentState) => {
     return {
       products: currentState.products.filter((product) => product.name !== name)
@@ -54,6 +55,19 @@ updateInput(e) {
   })
 }
 
+updateDone(item) {
+  console.log('checked', item);
+  this.setState((currentState) => {
+    return {
+      products: currentState.products.map((product) =>{
+        if (product.name === item){
+          product.done = !product.done
+        }
+        return product;
+      })
+    }
+  })
+};
 
   render() {
     return (
@@ -69,7 +83,7 @@ updateInput(e) {
             <div>
               {this.state.products.map((product) => (
                 <div key={product.name}>
-                  <input onChange={() => console.log('disparou')} type="checkbox" checked={product.done} />
+                  <input onChange={() => this.updateDone(product.name)} checked={product.done} type="checkbox"  />
                   <label>{product.name}</label>
                   <button onClick={() => this.handleRemoveProduct(product.name)}>Remove</button>
                 </div>
@@ -80,3 +94,7 @@ updateInput(e) {
     );
   }
 }
+
+// checkbox onde passa a informação que checked é true
+// a função do input não está alterando o state
+//
