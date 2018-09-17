@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import List from './List';
-import TestApp from './TestApp';
+import AddItem from './AddItem';
+import CheckItem from './CheckItem';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,84 +17,61 @@ export default class App extends Component {
           name: '1 kg maça',
           done: false,
         },
-      ],
-      input: '',
+      ]
     }
+
     this.handleAddProduct = this.handleAddProduct.bind(this)
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this)
-    this.updateInput = this.updateInput.bind(this)
     this.updateDone = this.updateDone.bind(this)
   };
 
+  handleAddProduct(name) {
+    this.setState((currentState) => {
+      return {
+        products: currentState.products.concat({
+          name: name,
+          done: false
+        })
+      }
+    })
+  }
 
-handleAddProduct() {
-  this.setState((currentState) => {
-    return {
-      products: currentState.products.concat({
-        name: this.state.input,
-        done: false
-      }),
-      input: ''
-    }
-  })
-}
 
-handleRemoveProduct(name) {
-  console.log('remove', name);
-  this.setState((currentState) => {
-    return {
-      products: currentState.products.filter((product) => product.name !== name)
-    }
-  })
-}
+  updateDone(name) {
+    console.log('checked', name);
+    this.setState((currentState) => {
+      return {
+        products: currentState.products.map((product) =>{
+          if (product.name === name){
+            product.done = !product.done
+          }
+          return product;
+        })
+      }
+    })
+  };
 
-updateInput(e) {
-  const value = e.target.value
-  this.setState({
-    input: value
-  })
-}
-
-updateDone(item) {
-  console.log('checked', item);
-  this.setState((currentState) => {
-    return {
-      products: currentState.products.map((product) =>{
-        if (product.name === item){
-          product.done = !product.done
-        }
-        return product;
-      })
-    }
-  })
-};
+  handleRemoveProduct(name) {
+    console.log('remove', name);
+    this.setState((currentState) => {
+      return {
+        products: currentState.products.filter((product) => product.name !== name)
+      }
+    })
+  };
 
   render() {
     return (
       <div>
-        <div>
           <h1> My list </h1>
-          <input type="text" placeholder="add item" value={this.state.input}
-          onChange={this.updateInput} />
-          <button onClick={this.handleAddProduct}> Add </button>
-        </div>
+          <AddItem add={this.handleAddProduct} />
         <div>
           <h2> Itens </h2>
-            <div>
-              {this.state.products.map((product) => (
-                <div key={product.name}>
-                  <input onChange={() => this.updateDone(product.name)} checked={product.done} type="checkbox"  />
-                  <label>{product.name}</label>
-                  <button onClick={() => this.handleRemoveProduct(product.name)}>Remove</button>
-                </div>
-              ))}
-            </div>
+          <CheckItem products={this.state.products} confirm={this.updateDone} remove={this.handleRemoveProduct} />
         </div>
       </div>
     );
   }
 }
 
-// checkbox onde passa a informação que checked é true
-// a função do input não está alterando o state
-//
+export default App;
