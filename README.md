@@ -11,7 +11,7 @@ To create a simple "to do" list, where is possible to insert products to buy or 
 
 1. [x] set up a new app using [React App](https://reactjs.org/docs/create-a-new-react-app.html).
 2. [x] to create components from zero (even this components already exist in some open source project)
-3. [ ] thinking in UI / UX, use my new component and apply [Rectstrapp](https://reactstrap.github.io/) and [Material UI](https://material-ui.com/)
+3. [ ] thinking in UI / UX, use the component created before and apply [Rectstrapp](https://reactstrap.github.io/) and [Material UI](https://material-ui.com/)
 4. [ ] beautify with CSS using [Styled Components](https://www.styled-components.com/)
 5. [ ] add test to components
 6. [ ] add build on [Travis](https://travis-ci.org/)
