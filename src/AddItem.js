@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 
-export default class AddItem extends Component {
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+
+  input: {
+    margin: theme.spacing.unit,
+  },
+})
+
+
+class AddItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,13 +46,28 @@ export default class AddItem extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <input type="text" placeholder="add item" value={this.state.input}
-        onChange={this.updateInput} />
+        <Input value={this.state.input}
+        onChange={this.updateInput}
+        placeholder="Add Item"
+        className={classes.input}
+        inputProps={{
+          'aria-label': 'Description',
+        }}
+        >
+        </Input>
 
-        <button onClick={this.handleButtonClick}> Add </button>
+        <Button aria-label="Add"
+        className={classes.button} onClick={this.handleButtonClick}> <AddIcon /> </Button>
       </div>
     );
   }
 }
+
+AddItem.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(AddItem);

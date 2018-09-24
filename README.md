@@ -12,7 +12,7 @@ To create a simple "to do" list, where is possible to insert products to buy or 
 1. [x] set up a new app using [React App](https://reactjs.org/docs/create-a-new-react-app.html).
 2. [x] to create components from zero (even this components already exist in some open source project)
 3. [ ] thinking in UI / UX, use my new component and apply [Rectstrapp](https://reactstrap.github.io/) and [Material UI](https://material-ui.com/)
-4. [ ] beautify with CSS using [Styled Components](https://www.styled-components.com/)
+4. [ ] beautify with CSS using [JSS](http://cssinjs.org)
 5. [ ] add test to components
 6. [ ] add build on [Travis](https://travis-ci.org/)
 7. [ ] publish on [NPM](https://www.npmjs.com/)
@@ -35,6 +35,6 @@ To create a simple "to do" list, where is possible to insert products to buy or 
 * [React App](https://reactjs.org/docs/create-a-new-react-app.html)
 * [Reactstrapp](https://reactstrap.github.io/)
 * [Material UI](https://material-ui.com/)
-* [Styled Components](https://www.styled-components.com/)
+* [JSS](http://cssinjs.org) 
 * [Travis](https://travis-ci.org/)
 * [NPM](https://www.npmjs.com/)
