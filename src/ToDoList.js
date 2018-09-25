@@ -18,11 +18,13 @@ const styles = theme => ({
   title: {
     color: '#5a5656',
     fontSize: 50,
+    textAlign: 'left',
   },
 
   title2: {
     color: '#5a5656',
     fontSize: 30,
+    textAlign: 'left',
   }
 });
 
@@ -37,7 +39,7 @@ class ToDoList extends Component {
           done: true,
         },
         {
-          name: '1 kg maça',
+          name: '1 kg apple',
           done: false,
         },
       ]
@@ -87,15 +89,13 @@ class ToDoList extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.align}>
-      <Grid container spacing={24}>
-        <Grid item xs={12} md={4} lg={4}  />
+      <Grid container spacing={24} justify="space-around">
         <Grid item xs={12} md={4} lg={4}>
           <h1 className={classes.title}> My list </h1>
           <AddItem add={this.handleAddProduct} />
-          <h2 className={classes.title2}> Itens </h2>
+          <h2 className={classes.title2}> Items </h2>
           <CheckItem products={this.state.products} confirm={this.updateDone} remove={this.handleRemoveProduct} />
         </Grid>
-        <Grid item xs={12} md={4} lg={4}/>
       </Grid>
       </div>
     );

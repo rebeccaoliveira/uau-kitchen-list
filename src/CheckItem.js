@@ -2,65 +2,38 @@ import React, { Component } from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
 
-checkLabelBox: {
-  display: 'flex',
-  alignSelf: 'center',
-  position: 'relative',
-  height: 20,
-  width: 20,
-  margin: '0 20',
-  border: '2 solid #3498db',
-  bordeRadius: 2,
-  cursor: 'pointer',
-},
+  listText: {
+    margin: theme.spacing.unit,
+    fontFamily: 'indie flower',
+    fontSize: 25,
+    textAlign: 'center',
 
-checkLabelText: {
-  display: 'flex',
-  alignSelf: 'center',
-  position: 'relative',
-  cursor: 'pointer',
-  borderLeft: '1 solid #ecf0f1',
+    '&:after': {
+     textDecoration: 'line-through',
+   }
+  },
 
-  '&:after': {
-    content: '',
-    display: 'block',
-    width: '0%',
-    height: 2,
-    backgroundColor: '#000',
-    position: 'absolute',
-    top: '50%',
-    left: '7.5%',
-    transform: 'translateY(-50%)',
-    transition: 'width 100 ease-in-out',
-  }
-},
+  removeButton: {
+    margin: theme.spacing.unit,
+    color: 'grey',
+  },
 
-// hiddenBox:checked + checkLabel: {
-//   backgroundColor: '#F9F9F9',
-//   check--label-box: {
-//     backgroundColor: '#3498db',
-//      '&:after': {
-//       content: '',
-//       display: 'block',
-//       position: 'absolute';
-//       top: -1;
-//       left: 4;
-//       width: 6;
-//       height: 12;
-//       border: 'solid #000',
-//       borderWidth: '0 2 2 0',
-//       transform: 'rotate(45deg)',
-//     }
-//   }
-//   check--label-text: {
-//     '&:after': {
-//       width: 85%;
-//     }
-//   }
-// },
+  root: {
+    color: '#5C6BC0',
+    '&$checked': {
+      color: 'secondary',
+    },
+  },
+  checked: {},
 
 })
 
@@ -69,24 +42,31 @@ class CheckItem extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <Grid container direction='column'>
         {this.props.products.map((product) => (
           <div key={product.name}>
-            <input className={classes.hiddenBox}
-             onChange={() => this.props.confirm(product.name)}
-             checked={product.done} type="checkbox" />
-            <label className={classes.checkLabel}> {product.name}
-            <span className={classes.checkLabelBox} />
-            <span className={classes.checkLabelText} />
-            </label>
-
-            <button
-            onClick={() => this.props.remove(product.name)}>
-            Remove
-            </button>
+            <Grid container direction='row'>
+              <Grid item xs={10} >
+                <Checkbox className={classes.checkLabel}
+                 onChange={() => this.props.confirm(product.name)}
+                 checked={product.done} type="checkbox" color="secondary"
+                 classes={{
+                  root: classes.root,
+                  checked: classes.checked,
+                  }} />
+                <label className={classes.listText}>{product.name} </label>
+              </Grid>
+              <Grid item xs={2} >
+                <Button size="small"
+                className={classes.removeButton}
+                onClick={() => this.props.remove(product.name)}>
+                <DeleteIcon />
+                </Button>
+              </Grid>
+            </Grid>
           </div>
         ))}
-      </div>
+      </Grid>
     );
   }
 }
@@ -100,4 +80,3 @@ export default withStyles(styles)(CheckItem);
 
 // checkbox onde passa a informação que checked é true
 // a função do input não está alterando o state
-//

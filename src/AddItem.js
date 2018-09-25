@@ -5,14 +5,14 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
 
   input: {
     margin: theme.spacing.unit,
+    fontFamily: 'indie flower',
+    textAlign: 'center',
   },
 })
 
@@ -48,7 +48,7 @@ class AddItem extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <Grid container justify="center">
         <Input value={this.state.input}
         onChange={this.updateInput}
         placeholder="Add Item"
@@ -61,7 +61,7 @@ class AddItem extends Component {
 
         <Button aria-label="Add"
         className={classes.button} onClick={this.handleButtonClick}> <AddIcon /> </Button>
-      </div>
+      </Grid>
     );
   }
 }

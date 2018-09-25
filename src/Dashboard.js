@@ -18,7 +18,6 @@ import { mainListItems } from './listItems';
 import ToDoList from './ToDoList';
 
 
-
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -27,6 +26,7 @@ const styles = theme => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    backgroundColor: '#5C6BC0',
   },
   toolbarIcon: {
     display: 'flex',
