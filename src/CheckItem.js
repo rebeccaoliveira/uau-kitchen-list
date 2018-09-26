@@ -6,8 +6,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import classNames from 'classnames';
 
 const styles = theme => ({
 
@@ -16,15 +15,15 @@ const styles = theme => ({
     fontFamily: 'indie flower',
     fontSize: 25,
     textAlign: 'center',
-
-    '&:after': {
-     textDecoration: 'line-through',
-   }
   },
 
   removeButton: {
     margin: theme.spacing.unit,
     color: 'grey',
+  },
+
+  changeText: {
+    textDecoration: 'line-through',
   },
 
   root: {
@@ -34,10 +33,17 @@ const styles = theme => ({
     },
   },
   checked: {},
-
 })
 
 class CheckItem extends Component {
+
+  classNameLabel(done, classes) {
+    if (done === true) {
+      return classNames(classes.listText, classes.changeText)
+    } else {
+      return classes.listText;
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -47,14 +53,15 @@ class CheckItem extends Component {
           <div key={product.name}>
             <Grid container direction='row'>
               <Grid item xs={10} >
-                <Checkbox className={classes.checkLabel}
+                <Checkbox
                  onChange={() => this.props.confirm(product.name)}
-                 checked={product.done} type="checkbox" color="secondary"
+                 checked={product.done} id="check1" type="checkbox" color="secondary"
                  classes={{
-                  root: classes.root,
-                  checked: classes.checked,
-                  }} />
-                <label className={classes.listText}>{product.name} </label>
+                  listText: classes.listText,
+                  checked: classes.checked
+                 }}
+                />
+                <label className={this.classNameLabel(product.done, classes)} for="check1"> {product.name} </label>
               </Grid>
               <Grid item xs={2} >
                 <Button size="small"
