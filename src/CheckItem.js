@@ -56,12 +56,8 @@ class CheckItem extends Component {
                 <Checkbox
                  onChange={() => this.props.confirm(product.name)}
                  checked={product.done} id="check1" type="checkbox" color="secondary"
-                 classes={{
-                  listText: classes.listText,
-                  checked: classes.checked
-                 }}
                 />
-                <label className={this.classNameLabel(product.done, classes)} for="check1"> {product.name} </label>
+                <label className={this.classNameLabel(product.done, classes)}> {product.name} </label>
               </Grid>
               <Grid item xs={2} >
                 <Button size="small"

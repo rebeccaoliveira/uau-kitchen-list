@@ -26,6 +26,7 @@ class AddItem extends Component {
 
     this.updateInput = this.updateInput.bind(this)
     this.handleButtonClick = this.handleButtonClick.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
     this.setInput = this.setInput.bind(this)
   };
 
@@ -39,6 +40,14 @@ class AddItem extends Component {
     this.setInput('')
   }
 
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      console.log('enter press here! ')
+      this.props.add(this.state.input)
+      this.setInput('')
+    }
+  }
+
   setInput(value) {
     this.setState({
       input: value
@@ -48,8 +57,9 @@ class AddItem extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container justify="center">
+      <Grid container justify="flex-start">
         <Input value={this.state.input}
+        onKeyPress={this.handleKeyPress}
         onChange={this.updateInput}
         placeholder="Add Item"
         className={classes.input}
@@ -60,7 +70,7 @@ class AddItem extends Component {
         </Input>
 
         <Button aria-label="Add"
-        className={classes.button} onClick={this.handleButtonClick}> <AddIcon /> </Button>
+        className={classes.button} onClick={this.handleButtonClick} > <AddIcon /> </Button>
       </Grid>
     );
   }
