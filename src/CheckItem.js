@@ -45,36 +45,44 @@ class CheckItem extends Component {
     }
   }
 
+  renderProducts(products, classes) {
+    if (products === undefined || products.length === 0) {
+      return <h1>No Items</h1>
+    }
+    return products.map((product) => (
+      <div key={product.name}>
+        <Grid container direction='row'>
+          <Grid item xs={10} >
+            <Checkbox
+             onChange={() => this.props.confirm(product.name)}
+             checked={product.done} id="check1" type="checkbox" color="secondary"
+            />
+            <label className={this.classNameLabel(product.done, classes)}> {product.name} </label>
+          </Grid>
+          <Grid item xs={2} >
+            <Button size="small"
+            className={classes.removeButton}
+            onClick={() => this.props.remove(product.name)}>
+            <DeleteIcon />
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+    ))
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, products } = this.props;
     return (
       <Grid container direction='column'>
-        {this.props.products.map((product) => (
-          <div key={product.name}>
-            <Grid container direction='row'>
-              <Grid item xs={10} >
-                <Checkbox
-                 onChange={() => this.props.confirm(product.name)}
-                 checked={product.done} id="check1" type="checkbox" color="secondary"
-                />
-                <label className={this.classNameLabel(product.done, classes)}> {product.name} </label>
-              </Grid>
-              <Grid item xs={2} >
-                <Button size="small"
-                className={classes.removeButton}
-                onClick={() => this.props.remove(product.name)}>
-                <DeleteIcon />
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        ))}
+        {this.renderProducts(products, classes)}
       </Grid>
     );
   }
 }
 
 CheckItem.propTypes = {
+  products: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
