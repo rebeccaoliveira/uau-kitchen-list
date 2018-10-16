@@ -15,7 +15,7 @@ As I'm currently living remote, I decided to create a simple app to help to orga
 1. [x] set up a new app using [React App](https://reactjs.org/docs/create-a-new-react-app.html)
 2. [x] to create components from zero (even this components already exist in some open source project)
 3. [x] thinking in UI / UX, use the component created before and apply [Material UI](https://material-ui.com/)
-4. [x] beautify with CSS using [Styled Components](https://www.styled-components.com/)
+4. [x] beautify with CSS using [JSS](http://cssinjs.org/)
 5. [x] add test to components
 6. [ ] create an API
 7. [ ] add build on [Travis](https://travis-ci.org/)
