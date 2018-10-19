@@ -1,8 +1,9 @@
-
 import React, { Component } from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+
 import AddItem from './AddItem';
 import CheckItem from './CheckItem';
 import Grid from '@material-ui/core/Grid';
@@ -33,15 +34,16 @@ class ToDoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       products: [
-        {
-          name: '1 kg banana',
-          done: true,
-        },
-        {
-          name: '1 kg apple',
-          done: false,
-        },
+        // {
+        //   name: '1 kg banana',
+        //   done: true,
+        // },
+        // {
+        //   name: '1 kg apple',
+        //   done: false,
+        // },
       ]
     }
 
@@ -50,6 +52,15 @@ class ToDoList extends Component {
     this.updateDone = this.updateDone.bind(this)
     this.handleDone = this.handleDone.bind(this)
   };
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/shopping_lists/1.json`)
+      .then(res => {
+        console.log('axios result', res)
+        const products = res.data.products;
+        this.setState({ products, shoppingListId: 1, loading: false });
+      })
+  }
 
   handleAddProduct(name) {
     this.setState((currentState) => {
@@ -102,6 +113,9 @@ class ToDoList extends Component {
 
   render() {
     const { classes } = this.props;
+    if (this.state.loading) {
+      return (<h1>Loading</h1>)
+    }
     return (
       <div className={classes.align}>
       <Grid container spacing={24} justify="space-around">
