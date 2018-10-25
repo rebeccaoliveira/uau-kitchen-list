@@ -34,7 +34,7 @@ class ToDoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       products: [
         // {
         //   name: '1 kg banana',
@@ -63,14 +63,21 @@ class ToDoList extends Component {
   }
 
   handleAddProduct(name) {
-    this.setState((currentState) => {
-      return {
-        products: currentState.products.concat({
+    axios.post(`http://localhost:3000/products.json`, {
+        product: {
           name: name,
-          done: false
+          done: false,
+          shopping_list_id: 1
+        }
+      })
+      .then(res => {
+        console.log('axios post result', res)
+        this.setState((currentState) => {
+          return {
+            products: currentState.products.concat(res.data)
+          }
         })
-      }
-    })
+      })
   }
 
 
