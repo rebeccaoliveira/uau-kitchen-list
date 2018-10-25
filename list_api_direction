@@ -1,0 +1,115 @@
+GET /shopping_lists HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+DNT: 1
+Accept: application/json
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,pt;q=0.8
+Cookie: _uaukitchen_session=QOrmjLR7Wldu0EYoVjvC4zeaFDtAhYsjc8Y9JZ%2BsxAhRolABfD1nbsczQRqSdlKGYwjF3duxtJnZAtHBvT0L9zAba3YCgvXD8sn%2BDzrTkcNwOQyypVuyZvq5b3iCru9nMmPvuqce1jIY9N3aNzE%3D--omy8PeaV7hbY%2Fru3--bkFvy%2BXeRYyW0euTYN37ZA%3D%3D
+
+# shopping_lists
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: text/html; charset=utf-8
+ETag: W/"4a3c81ae1570468818e0203432e0d6c6"
+Cache-Control: max-age=0, private, must-revalidate
+Set-Cookie: _uaukitchen_session=ZJbQ4SvOJdLyw410sAUpZdX%2F9W93wOjv8ucP%2BKoyZGPP6vOvpUDjoOk3r6DL6juqGotiDTlIT8azZNYN%2F7Gv5l2lGDTp%2FZxUeYVk65P7eK1Pz2xaGkSXNz4Tv4JRTi4u4WsSy%2BiO%2BtDaNh8JE5I%3D--kbTN%2BMBwvU%2B6kx3U--3JLRUAgBiPLd66iMHMVQSA%3D%3D; path=/; HttpOnly
+X-Request-Id: 7dd53693-aa5f-4292-b5cb-c43a9ce1a8aa
+X-Runtime: 0.065452
+Transfer-Encoding: chunked
+
+# hopping_lists
+HTTP/1.1 404 Not Found
+Content-Type: text/html; charset=UTF-8
+X-Web-Console-Session-Id: 2efb984ff98a7cf62297d1517e810073
+X-Web-Console-Mount-Point: /__web_console
+X-Request-Id: 143e6c68-a64a-4a5b-b369-a0ddc1854cc7
+X-Runtime: 1.049222
+Transfer-Encoding: chunked
+
+
+# POST
+
+POST /products HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 232
+Pragma: no-cache
+Cache-Control: no-cache
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+DNT: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/products/new
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,pt;q=0.8
+Cookie: _uaukitchen_session=E4%2BMfuWxRRgzXbwEe6oUgoerNhNnzSKUqNB8ImM6DKdtG40Uofn438kYmqAydxEHm8p8TFRBcpsTEbFp1u7Zv8zxUh0LhEX5RrN5BzDPxgaV6rwS5vUf%2F%2FrYDqmvvlbjHg%2Bg%2B2fgzpV1Ihfz9bE%3D--ADQQrpNY2XRFaGNU--mav1KKVuZdEOoQORYrz%2Ftg%3D%3D
+
+utf8=%E2%9C%93&authenticity_token=pXwv6HbeOW71ySOeHBgdPqo2Slc%2FEzI2EfoYWh5YigQEAtcvjGg%2BUW2HJIzB3%2Ffepa1pzn2tiQ6uIiFdxKjq7Q%3D%3D&product%5Bname%5D=produtotelnet&product%5Bdone%5D=0&product%5Bshopping_list_id%5D=1&commit=Create+Product
+
+
+# JSON
+## Criar Lista
+POST http://localhost:3000/shopping_lists.json
+**Request**
+{
+	"shopping_list": {
+		"name": "lista da api"
+	}
+}
+
+**Retorno**
+{
+    "id": 3,
+    "name": "lista da api",
+    "created_at": "2018-10-19T10:33:59.552Z",
+    "updated_at": "2018-10-19T10:33:59.552Z",
+    "url": "http://localhost:3000/shopping_lists/3.json",
+    "products": []
+}
+
+## Criar Produto
+POST http://localhost:3000/products.json
+**Request**
+{
+	"product": {
+		"name": "postman",
+		"done": 0,
+		"shopping_list_id": 1
+	}
+}
+
+**Retorno**
+{
+    "id": 6,
+    "name": "postman",
+    "done": false,
+    "shopping_list_id": 1,
+    "created_at": "2018-10-19T10:30:43.381Z",
+    "updated_at": "2018-10-19T10:30:43.381Z",
+    "url": "http://localhost:3000/products/6.json"
+}
+
+- [x] Quando tem dois produtos `mamao`, e marca 1 como done, apenas 1 é marcado
+- [x] Quando marca um produto como done, edita na API (checar recarregando a pagina)
+- [ ] COMMIT
+- [ ] Quando tem dois produtos `mamao`, e apaga 1, apenas 1 é apagado
+- [ ] COMMIT
+- [ ] Quando apaga um produto, apaga na API
+- [ ] COMMIT
+
+- não precisa mexer na API
+- os códigos necessários, ja existem IGUAIS ou MUITO similares aqui no todo list
+- você ja sabe absolutamente TODOS os conceitos que precisa para executar
+- bom exercício :*

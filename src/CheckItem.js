@@ -50,11 +50,11 @@ class CheckItem extends Component {
       return <h1>No Items</h1>
     }
     return products.map((product) => (
-      <div key={product.name}>
+      <div key={product.id}>
         <Grid container direction='row'>
           <Grid item xs={10} >
             <Checkbox
-             onChange={() => this.props.confirm(product.name)}
+             onChange={() => this.props.confirm(product.id, product.done)}
              checked={product.done} id="check1" type="checkbox" color="secondary"
             />
             <label className={this.classNameLabel(product.done, classes)}> {product.name} </label>

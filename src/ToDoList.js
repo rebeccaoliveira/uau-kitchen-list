@@ -81,19 +81,27 @@ class ToDoList extends Component {
   }
 
 
-  updateDone(name) {
-    console.log('checked', name);
-    this.setState((currentState) => {
-      return {
-        products: currentState.products.map((product) =>{
-          if (product.name === name){
-            product.done = !product.done
-          }
-          return product;
-        })
+  updateDone(id, current_done) {
+    axios.put(`http://localhost:3000/products/${id}.json`, {
+      product: {
+        done: !current_done
       }
     })
-  };
+    .then(res => {
+      console.log('checked', id)
+      console.log('axios post result', res)
+      this.setState((currentState) => {
+        return {
+          products: currentState.products.map((product) =>{
+            if (product.id === id) {
+              product.done = res.data.done
+            }
+            return product;
+          })
+        }
+      })
+    })
+  }
 
   handleDone(name) {
     this.setState((currentState) => {
