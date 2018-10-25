@@ -104,7 +104,7 @@ POST http://localhost:3000/products.json
 - [x] Quando tem dois produtos `mamao`, e marca 1 como done, apenas 1 é marcado
 - [x] Quando marca um produto como done, edita na API (checar recarregando a pagina)
 - [ ] COMMIT
-- [ ] Quando tem dois produtos `mamao`, e apaga 1, apenas 1 é apagado
+- [x] Quando tem dois produtos `mamao`, e apaga 1, apenas 1 é apagado
 - [ ] COMMIT
 - [ ] Quando apaga um produto, apaga na API
 - [ ] COMMIT

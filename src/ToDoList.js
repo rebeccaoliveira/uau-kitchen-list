@@ -50,7 +50,6 @@ class ToDoList extends Component {
     this.handleAddProduct = this.handleAddProduct.bind(this)
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this)
     this.updateDone = this.updateDone.bind(this)
-    this.handleDone = this.handleDone.bind(this)
   };
 
   componentDidMount() {
@@ -103,25 +102,16 @@ class ToDoList extends Component {
     })
   }
 
-  handleDone(name) {
-    this.setState((currentState) => {
-      return {
-        products: currentState.products.map((product) =>{
-          if (product.name === name){
-            product.done = !product.done
-          }
-          return product;
-        })
-      }
-    })
-  };
 
-  handleRemoveProduct(name) {
-    console.log('remove', name);
-    this.setState((currentState) => {
-      return {
-        products: currentState.products.filter((product) => product.name !== name)
-      }
+  handleRemoveProduct(id) {
+    axios.delete(`http://localhost:3000/products/${id}.json`)
+    .then(res=>{
+      console.log('remove', id);
+      this.setState((currentState) => {
+        return {
+          products: currentState.products.filter((product) => product.id !== id)
+        }
+      })
     })
   };
 
@@ -138,7 +128,7 @@ class ToDoList extends Component {
           <h1 className={classes.title}> My list </h1>
           <AddItem add={this.handleAddProduct} />
           <h2 className={classes.title2}> Items </h2>
-          <CheckItem products={this.state.products} confirm={this.updateDone} remove={this.handleRemoveProduct} change={this.handleDone} />
+          <CheckItem products={this.state.products} confirm={this.updateDone} remove={this.handleRemoveProduct} />
         </Grid>
       </Grid>
       </div>

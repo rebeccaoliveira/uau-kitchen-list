@@ -62,7 +62,7 @@ class CheckItem extends Component {
           <Grid item xs={2} >
             <Button size="small"
             className={classes.removeButton}
-            onClick={() => this.props.remove(product.name)}>
+            onClick={() => this.props.remove(product.id)}>
             <DeleteIcon />
             </Button>
           </Grid>
