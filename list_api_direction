@@ -113,3 +113,26 @@ POST http://localhost:3000/products.json
 - os códigos necessários, ja existem IGUAIS ou MUITO similares aqui no todo list
 - você ja sabe absolutamente TODOS os conceitos que precisa para executar
 - bom exercício :*
+
+POST /login
+{
+	"login": {
+		"user": "keba",
+		"password": "senha123"
+	}
+}
+
+# Sucesso
+CODIGO:  202
+BODY: {
+	
+}
+
+# Falha
+CODIGO: 401
+BODY: {
+	"login": {
+		"user": Try Again,
+		"password": nooo :(
+	}
+}

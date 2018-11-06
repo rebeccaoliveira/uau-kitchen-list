@@ -35,16 +35,7 @@ class ToDoList extends Component {
     super(props);
     this.state = {
       loading: false,
-      products: [
-        // {
-        //   name: '1 kg banana',
-        //   done: true,
-        // },
-        // {
-        //   name: '1 kg apple',
-        //   done: false,
-        // },
-      ]
+      products: [ ]
     }
 
     this.handleAddProduct = this.handleAddProduct.bind(this)
